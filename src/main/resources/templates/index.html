@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CredSure - Smart Loan Portal</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+            background:#edf3ff;
+        }
+
+        .header{
+            background:#0f172a;
+            color:white;
+            padding:18px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+		.logo{
+		    font-size:28px;
+		    font-weight:bold;
+		    color:white;
+		    text-decoration:none;
+		}
+
+        .nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            font-size:15px;
+        }
+
+        .main{
+            display:flex;
+            gap:20px;
+            padding:30px;
+        }
+
+        .left-panel{
+            width:20%;
+            background:white;
+            border-radius:18px;
+            padding:20px;
+            height:fit-content;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .center-panel{
+            width:55%;
+            background:white;
+            border-radius:18px;
+            padding:25px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .right-panel{
+            width:25%;
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:18px;
+            padding:20px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            margin-top:0;
+            color:#1e3a8a;
+        }
+
+        h2{
+            color:#2563eb;
+            margin-top:25px;
+        }
+
+        .progress-step{
+            padding:12px;
+            margin-bottom:10px;
+            border-radius:10px;
+            background:#e0edff;
+            color:#1e3a8a;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .progress-step.completed{
+            background:#dcfce7;
+            color:#166534;
+        }
+
+        .progress-step.completed::before{
+            content:"✓ ";
+            font-weight:bold;
+        }
+
+        .row{
+            display:flex;
+            gap:15px;
+            margin-bottom:15px;
+        }
+
+        input, select{
+            width:100%;
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:10px;
+            font-size:14px;
+        }
+
+        .save-btn{
+            background:#0ea5e9;
+            color:white;
+            border:none;
+            padding:10px 18px;
+            border-radius:10px;
+            margin-top:10px;
+            cursor:pointer;
+            font-size:14px;
+        }
+
+        .btn{
+            width:100%;
+            padding:15px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:17px;
+            margin-top:20px;
+            cursor:pointer;
+        }
+
+        .summary-box{
+            background:#f8fafc;
+            padding:15px;
+            border-radius:12px;
+            margin-top:10px;
+        }
+
+        .summary-box p{
+            margin:8px 0;
+        }
+
+        .offer{
+            background:#dbeafe;
+            border-radius:12px;
+            padding:15px;
+            margin-top:15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="/" class="logo">CredSure</a>
+
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="/offers">Loan Offers</a>
+        <a href="/emi">EMI Calculator</a>
+        <a href="/support">Support</a>
+    </div>
+</div>
+
+<form action="/apply" method="post" th:object="${loanApplication}">
+
+    <div class="main">
+
+        <div class="left-panel">
+            <h3>Application Progress</h3>
+
+            <div id="step1" class="progress-step">1. Personal Details</div>
+            <div id="step2" class="progress-step">2. Employment Details</div>
+            <div id="step3" class="progress-step">3. Loan Details</div>
+            <div id="step4" class="progress-step">4. Bank Analysis</div>
+        </div>
+
+        <div class="center-panel">
+
+            <h1>Smart Loan Application</h1>
+
+            <h2>Personal Details</h2>
+
+            <div class="row">
+                <input type="text" th:field="*{fullName}" placeholder="Full Name" required>
+                <input type="number" th:field="*{age}" placeholder="Age" required>
+            </div>
+
+            <div class="row">
+                <input type="text" th:field="*{city}" placeholder="City" required>
+
+                <select th:field="*{employmentType}">
+                    <option value="">Employment Type</option>
+                    <option value="Government Employee">Government Employee</option>
+                    <option value="Permanent Employee">Permanent Employee</option>
+                    <option value="Temporary Employee">Temporary Employee</option>
+                    <option value="Self Employed">Self Employed</option>
+                    <option value="Business Owner">Business Owner</option>
+                    <option value="Farmer">Farmer</option>
+                    <option value="Retired">Retired</option>
+                </select>
+            </div>
+
+            <button type="button" class="save-btn" onclick="completeStep(1)">
+                Save Personal Details
+            </button>
+
+            <h2>Employment & Income</h2>
+
+            <div class="row">
+                <input type="number" th:field="*{salary}" placeholder="Monthly Salary" required>
+                <input type="number" th:field="*{existingEmi}" placeholder="Existing EMI" required>
+            </div>
+
+            <div class="row">
+                <input type="text" placeholder="Company / Business Name">
+                <input type="number" placeholder="Years of Experience">
+            </div>
+
+            <button type="button" class="save-btn" onclick="completeStep(2)">
+                Save Employment Details
+            </button>
+
+            <h2>Loan Details</h2>
+
+            <div class="row">
+                <select th:field="*{loanType}">
+                    <option value="">Select Loan Type</option>
+                    <option value="Home Loan">Home Loan</option>
+                    <option value="Car Loan">Car Loan</option>
+                    <option value="Personal Loan">Personal Loan</option>
+                    <option value="Education Loan">Education Loan</option>
+                    <option value="Business Loan">Business Loan</option>
+                </select>
+
+                <input type="number" th:field="*{loanAmount}" placeholder="Requested Loan Amount" required>
+            </div>
+
+            <div class="row">
+                <input type="text" placeholder="Purpose of Loan">
+                <input type="number" placeholder="Property / Vehicle Cost">
+            </div>
+
+            <button type="button" class="save-btn" onclick="completeStep(3)">
+                Save Loan Details
+            </button>
+
+            <button type="submit" class="btn" onclick="completeStep(4)">
+                Continue To Bank Analysis
+            </button>
+
+        </div>
+
+        <div class="right-panel">
+
+            <div class="card">
+                <h3>Instant Summary</h3>
+
+                <div class="summary-box">
+                    <p><b>Loan Type:</b> Home Loan</p>
+                    <p><b>Requested:</b> ₹5,00,000</p>
+                    <p><b>Estimated EMI:</b> ₹14,200</p>
+                    <p><b>Eligibility:</b> Good Chances</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Pre-Approved Offer</h3>
+
+                <div class="offer">
+                    <p style="font-size:22px;font-weight:bold;color:#1d4ed8;">
+                        Up to ₹7,50,000
+                    </p>
+
+                    <p>Interest Rate Starting From 8.5%</p>
+                    <p>Processing Fee: 0%</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Why CredSure?</h3>
+
+                <ul>
+                    <li>Compare multiple bank offers</li>
+                    <li>Instant EMI estimation</li>
+                    <li>Fast document verification</li>
+                    <li>Track application in real time</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+<script>
+    function completeStep(step){
+
+        if(step === 1){
+
+            const fullName = document.querySelector('[name="fullName"]').value;
+            const age = document.querySelector('[name="age"]').value;
+            const city = document.querySelector('[name="city"]').value;
+            const employment = document.querySelector('[name="employmentType"]').value;
+
+            if(fullName === "" || age === "" || city === "" || employment === ""){
+                alert("Please fill all Personal Details first.");
+                return;
+            }
+
+            document.getElementById("step1").classList.add("completed");
+        }
+
+        if(step === 2){
+
+            const salary = document.querySelector('[name="salary"]').value;
+            const emi = document.querySelector('[name="existingEmi"]').value;
+
+            if(salary === "" || emi === ""){
+                alert("Please fill all Employment Details first.");
+                return;
+            }
+
+            document.getElementById("step2").classList.add("completed");
+        }
+
+        if(step === 3){
+
+            const loanType = document.querySelector('[name="loanType"]').value;
+            const loanAmount = document.querySelector('[name="loanAmount"]').value;
+
+            if(loanType === "" || loanAmount === ""){
+                alert("Please fill all Loan Details first.");
+                return;
+            }
+
+            document.getElementById("step3").classList.add("completed");
+        }
+
+        if(step === 4){
+
+            if(!document.getElementById("step1").classList.contains("completed")
+                || !document.getElementById("step2").classList.contains("completed")
+                || !document.getElementById("step3").classList.contains("completed")){
+
+                alert("Please complete all sections before Bank Analysis.");
+                event.preventDefault();
+                return false;
+            }
+
+            document.getElementById("step4").classList.add("completed");
+        }
+    }
+</script>
+
+</body>
+</html>

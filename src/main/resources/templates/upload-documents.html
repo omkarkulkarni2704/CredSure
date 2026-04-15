@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Documents - CredSure</title>
+
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+            background:#edf3ff;
+            margin:0;
+            padding:40px;
+        }
+
+        .container{
+            width:1000px;
+            margin:auto;
+            display:flex;
+            gap:20px;
+        }
+
+        .left{
+            width:65%;
+            background:white;
+            border-radius:20px;
+            padding:30px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .right{
+            width:35%;
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:20px;
+            padding:20px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            color:#2563eb;
+            margin-top:0;
+        }
+
+        h2{
+            color:#1e3a8a;
+        }
+
+        .upload-box{
+            border:2px dashed #94a3b8;
+            border-radius:15px;
+            padding:20px;
+            margin-bottom:20px;
+            background:#f8fafc;
+        }
+
+        .upload-box p{
+            margin:0 0 12px 0;
+            font-weight:bold;
+            color:#1e293b;
+        }
+
+        input[type="file"]{
+            width:100%;
+            padding:10px;
+            background:white;
+            border-radius:10px;
+        }
+
+        .file-name{
+            display:block;
+            margin-top:10px;
+            color:green;
+            font-weight:bold;
+        }
+
+        .btn{
+            width:100%;
+            padding:15px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        .progress-step{
+            padding:12px;
+            margin-bottom:10px;
+            border-radius:10px;
+            background:#dcfce7;
+            color:#166534;
+            font-weight:bold;
+        }
+
+        .pending{
+            background:#e2e8f0;
+            color:#475569;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left">
+
+        <h1>Upload Required Documents</h1>
+
+        <form action="/upload-documents" method="post" enctype="multipart/form-data">
+
+            <div class="upload-box">
+                <p>Aadhaar Card</p>
+                <input type="file" name="aadhaar" required>
+                <span class="file-name" th:text="${aadhaarName}"></span>
+            </div>
+
+            <div class="upload-box">
+                <p>PAN Card</p>
+                <input type="file" name="pan" required>
+                <span class="file-name" th:text="${panName}"></span>
+            </div>
+
+            <div class="upload-box">
+                <p>Salary Slip / Income Proof</p>
+                <input type="file" name="salarySlip" required>
+                <span class="file-name" th:text="${salarySlipName}"></span>
+            </div>
+
+            <div class="upload-box">
+                <p>Bank Statement (Last 6 Months)</p>
+                <input type="file" name="bankStatement" required>
+                <span class="file-name" th:text="${bankStatementName}"></span>
+            </div>
+
+            <button class="btn" type="submit">
+                Submit Documents
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="right">
+
+        <div class="card">
+            <h2>Application Progress</h2>
+
+            <div class="progress-step">✓ Personal Details Completed</div>
+            <div class="progress-step">✓ Employment Details Completed</div>
+            <div class="progress-step">✓ Loan Details Completed</div>
+            <div class="progress-step">✓ Bank Analysis Completed</div>
+
+            <div class="progress-step pending"
+                 th:if="${aadhaarName == null}">
+                ○ Documents Under Verification
+            </div>
+
+            <div class="progress-step"
+                 th:if="${aadhaarName != null}">
+                ✓ Documents Uploaded Successfully
+            </div>
+
+            <div class="progress-step pending">
+                ○ Final Bank Approval Pending
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Selected Bank</h2>
+
+            <p><b>Bank:</b> HDFC Bank</p>
+            <p><b>Interest Rate:</b> 8.5%</p>
+            <p><b>Expected Approval:</b> Within 2 Days</p>
+        </div>
+
+        <div class="card" th:if="${aadhaarName != null}">
+            <h2>Uploaded Files</h2>
+
+            <p>✓ <span th:text="${aadhaarName}"></span></p>
+            <p>✓ <span th:text="${panName}"></span></p>
+            <p>✓ <span th:text="${salarySlipName}"></span></p>
+            <p>✓ <span th:text="${bankStatementName}"></span></p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
