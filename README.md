@@ -6,6 +6,13 @@ CredSure helps users apply for different types of loans by analyzing their perso
 
 ---
 
+## 🎥 Project Demo
+
+[Watch Demo Video]()
+
+---
+
+
 ## 🌟 Key Features
 
 ### 👤 For Loan Applicants:
