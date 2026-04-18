@@ -1,6 +1,6 @@
 # 💳 CredSure – Smart Loan Origination Platform
 
-### **CredSure helps users apply for different types of loans by analyzing their personal, employment, and financial information. The platform calculates a risk score, determines loan approval status, recommends the best bank offer, and allows users to upload documents and track their application progress.**
+**CredSure helps users apply for different types of loans by analyzing their personal, employment, and financial information. The platform calculates a risk score, determines loan approval status, recommends the best bank offer, and allows users to upload documents and track their application progress.**
 
 ---
 
