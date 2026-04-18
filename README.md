@@ -1,8 +1,6 @@
 # 💳 CredSure – Smart Loan Origination Platform
 
-### **A fintech web platform to analyze loan eligibility, recommend suitable banks, estimate EMI, and manage the end-to-end loan approval workflow.**
-
-CredSure helps users apply for different types of loans by analyzing their personal, employment, and financial information. The platform calculates a risk score, determines loan approval status, recommends the best bank offer, and allows users to upload documents and track their application progress.
+### **CredSure helps users apply for different types of loans by analyzing their personal, employment, and financial information. The platform calculates a risk score, determines loan approval status, recommends the best bank offer, and allows users to upload documents and track their application progress.**
 
 ---
 
