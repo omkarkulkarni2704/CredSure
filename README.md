@@ -53,46 +53,6 @@
 
 ---
 
-## 🚀 Setup and Run
-
-### 1. Database Setup:
-
-* Install MySQL.
-* Create a database named:
-
-```sql
-CREATE DATABASE credsure;
-```
-
-### 2. Configure Application:
-
-Update `src/main/resources/application.properties`:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/credsure
-spring.datasource.username=root
-spring.datasource.password=yourpassword
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
-
-### 3. Run the Project:
-
-Use your IDE or run:
-
-```bash
-mvn spring-boot:run
-```
-
-Then open:
-
-```text
-http://localhost:8080/
-```
-
----
-
 ## 🧭 System Architecture
 
 ```text
