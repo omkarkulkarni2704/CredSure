@@ -4,12 +4,6 @@
 
 ---
 
-## 🎥 Project Demo
-
-
----
-
-
 ## 🌟 Key Features
 
 ### 👤 For Loan Applicants:
