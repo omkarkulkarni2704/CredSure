@@ -6,7 +6,6 @@
 
 ## 🎥 Project Demo
 
-[Demo](https://drive.google.com/file/d/1hWx5PHEp13hV82X3eeEPhT5djProug3P/view?usp=drive_link)
 
 ---
 
