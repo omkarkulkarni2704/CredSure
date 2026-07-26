@@ -35,7 +35,26 @@ public class LoanController {
 
     @GetMapping("/admin")
     public String adminDashboard(Model model) {
-        model.addAttribute("applications", loanApplicationRepository.findAll());
+
+        var applications = loanApplicationRepository.findAll();
+
+        long approvedCount = applications.stream()
+                .filter(app -> "APPROVED".equalsIgnoreCase(app.getStatus()))
+                .count();
+
+        long reviewCount = applications.stream()
+                .filter(app -> "UNDER REVIEW".equalsIgnoreCase(app.getStatus()))
+                .count();
+
+        long rejectedCount = applications.stream()
+                .filter(app -> "REJECTED".equalsIgnoreCase(app.getStatus()))
+                .count();
+
+        model.addAttribute("applications", applications);
+        model.addAttribute("approvedCount", approvedCount);
+        model.addAttribute("reviewCount", reviewCount);
+        model.addAttribute("rejectedCount", rejectedCount);
+
         return "admin";
     }
 
@@ -60,6 +79,16 @@ public class LoanController {
         model.addAttribute("applications", loanApplicationRepository.findAll());
 
         return "history";
+    }
+    
+    
+    @GetMapping("/apply")
+    public String applyPage(Model model) {
+
+        model.addAttribute("loanApplication", new LoanApplication());
+
+        return "apply";
+
     }
 
     @PostMapping("/apply")

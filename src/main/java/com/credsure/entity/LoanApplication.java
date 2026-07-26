@@ -10,6 +10,10 @@ public class LoanApplication {
     private Long id;
 
     private String fullName;
+    private String email;
+    private String mobileNumber;
+    private Integer experienceYears;
+    private String purpose;
     private Integer age;
     private String city;
     private String employmentType;
@@ -30,6 +34,38 @@ public class LoanApplication {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public Integer getExperienceYears() {
+        return experienceYears;
+    }
+
+    public void setExperienceYears(Integer experienceYears) {
+        this.experienceYears = experienceYears;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 
     public Integer getAge() {

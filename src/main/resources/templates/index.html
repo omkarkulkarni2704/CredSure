@@ -1,370 +1,587 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>CredSure - Smart Loan Portal</title>
+
+    <title>CredSure | Smart Digital Loan Portal</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        body{
-            margin:0;
-            font-family:Arial, sans-serif;
-            background:#edf3ff;
-        }
+		
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
 
-        .header{
-            background:#0f172a;
-            color:white;
-            padding:18px 40px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
+body{
+    background:#f4f7fb;
+    color:#1f2937;
+}
 
-        .logo{
-            font-size:28px;
-            font-weight:bold;
-            color:white;
-            text-decoration:none;
-        }
+/* ===========================
+   HEADER
+=========================== */
 
-        .nav{
-            display:flex;
-            flex-wrap:wrap;
-            gap:12px;
-        }
+.header{
+    height:75px;
+    background:#0f172a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 50px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
 
-        .nav a{
-            color:white;
-            text-decoration:none;
-            padding:10px 16px;
-            border-radius:8px;
-            background:#1e293b;
-            font-size:14px;
-            transition:0.3s;
-        }
+.logo{
+    color:white;
+    text-decoration:none;
+    font-size:30px;
+    font-weight:bold;
+}
 
-        .nav a:hover{
-            background:#2563eb;
-        }
+.nav-links{
+    display:flex;
+    gap:15px;
+}
 
-        .main{
-            display:flex;
-            gap:20px;
-            padding:30px;
-        }
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    padding:10px 18px;
+    border-radius:10px;
+    transition:.3s;
+    font-size:15px;
+}
 
-        .left-panel{
-            width:20%;
-            background:white;
-            border-radius:18px;
-            padding:20px;
-            height:fit-content;
-            box-shadow:0 2px 8px rgba(0,0,0,0.1);
-        }
+.nav-links a:hover{
+    background:#2563eb;
+}
 
-        .center-panel{
-            width:55%;
-            background:white;
-            border-radius:18px;
-            padding:25px;
-            box-shadow:0 2px 8px rgba(0,0,0,0.1);
-        }
+/* ===========================
+   MAIN
+=========================== */
 
-        .right-panel{
-            width:25%;
-            display:flex;
-            flex-direction:column;
-            gap:20px;
-        }
+.container{
+    width:92%;
+    max-width:1400px;
+    margin:40px auto;
+}
 
-        .card{
-            background:white;
-            border-radius:18px;
-            padding:20px;
-            box-shadow:0 2px 8px rgba(0,0,0,0.1);
-        }
+/* ===========================
+   WELCOME CARD
+=========================== */
 
-        h1{
-            margin-top:0;
-            color:#1e3a8a;
-        }
+.welcome-card{
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:white;
+    border-radius:22px;
+    padding:50px;
+    margin-bottom:40px;
+    box-shadow:0 15px 35px rgba(37,99,235,.25);
 
-        h2{
-            color:#2563eb;
-            margin-top:25px;
-        }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+}
 
-        .progress-step{
-            padding:12px;
-            margin-bottom:10px;
-            border-radius:10px;
-            background:#e0edff;
-            color:#1e3a8a;
-            font-weight:bold;
-        }
+.welcome-left{
+    flex:1;
+}
 
-        .progress-step.completed{
-            background:#dcfce7;
-            color:#166534;
-        }
+.welcome-left h1{
+    font-size:46px;
+    margin-bottom:18px;
+}
 
-        .progress-step.completed::before{
-            content:"✓ ";
-        }
+.welcome-left p{
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:30px;
+}
 
-        .row{
-            display:flex;
-            gap:15px;
-            margin-bottom:15px;
-        }
+.welcome-right{
+    width:360px;
+}
 
-        input, select{
-            width:100%;
-            padding:12px;
-            border:1px solid #cbd5e1;
-            border-radius:10px;
-            font-size:14px;
-        }
+.summary-card{
+    background:white;
+    color:#111827;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
 
-        .save-btn{
-            background:#0ea5e9;
-            color:white;
-            border:none;
-            padding:10px 18px;
-            border-radius:10px;
-            margin-top:10px;
-            cursor:pointer;
-        }
+.summary-card h3{
+    color:#2563eb;
+    margin-bottom:20px;
+    font-size:24px;
+}
 
-        .btn{
-            width:100%;
-            padding:15px;
-            background:#2563eb;
-            color:white;
-            border:none;
-            border-radius:12px;
-            font-size:17px;
-            margin-top:20px;
-            cursor:pointer;
-        }
+.summary-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #e5e7eb;
+    font-size:16px;
+}
 
-        .summary-box{
-            background:#f8fafc;
-            padding:15px;
-            border-radius:12px;
-            margin-top:10px;
-        }
+.summary-item:last-child{
+    border-bottom:none;
+}
 
-        .summary-box p{
-            margin:8px 0;
-        }
+/* ===========================
+   BUTTONS
+=========================== */
 
-        .offer{
-            background:#dbeafe;
-            border-radius:12px;
-            padding:15px;
-            margin-top:15px;
-        }
+.primary-btn{
+    display:inline-block;
+    background:white;
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+    padding:14px 28px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-3px);
+}
+
+.secondary-btn{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:12px 22px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.secondary-btn:hover{
+    background:#1d4ed8;
+}
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.section-title{
+    margin:45px 0 20px;
+    color:#1e3a8a;
+    font-size:28px;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    margin:18px 0 10px;
+    color:#1e3a8a;
+}
+
+.card p{
+    color:#6b7280;
+    line-height:1.7;
+}
+
+.icon{
+    font-size:42px;
+}
+
+/* ===========================
+   SERVICE CARD
+=========================== */
+
+.services h2{
+    margin:45px 0 30px;
+    color:#1e3a8a;
+    font-size:28px;
+    font-weight:700;
+}
+
+.service-card{
+
+    background:white;
+    border-radius:18px;
+    text-decoration:none;
+    color:#111827;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    text-align:left;
+
+}
+
+.service-card span{
+
+    font-size:38px;
+
+}
+
+.service-card h3{
+
+    margin:18px 0 10px;
+
+    font-size:22px;
+
+}
+
+.service-card p{
+
+    font-size:16px;
+
+    line-height:1.6;
+
+    color:#6b7280;
+
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    background:#2563eb;
+    color:white;
+}
+
+/* ===========================
+   RECENT
+=========================== */
+
+.recent-card{
+    background:white;
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.recent-card p{
+    font-size:17px;
+    color:#6b7280;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer{
+    margin-top:60px;
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:22px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+    .header{
+        flex-direction:column;
+        height:auto;
+        padding:20px;
+    }
+
+    .nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        margin-top:15px;
+    }
+
+    .welcome-card{
+        padding:30px;
+    }
+
+    .welcome-card h1{
+        font-size:32px;
+    }
+
+    .welcome-card p{
+        font-size:16px;
+    }
+
+}
+
     </style>
+
 </head>
-<body>
 
-<div class="header">
 
-    <a href="/" class="logo">CredSure</a>
+<header class="header">
 
-    <div class="nav">
-        <a href="/">Home</a>
-        <a href="/history">My Applications</a>
-        <a href="/admin">Admin Dashboard</a>
-        <a href="/register">Register</a>
-    </div>
+    <a href="/" class="logo">🏦 CredSure</a>
+
+	<nav class="nav-links">
+
+	    <a th:href="@{/}" class="active">Dashboard</a>
+
+	    <a th:href="@{/admin}">Admin</a>
+
+	</nav>
+
+</header>
+
+<div class="container">
+
+    <!-- Welcome Banner -->
+
+	<section class="welcome-card">
+
+	    <div class="welcome-left">
+
+	        <h1>Fast, Secure & Smart Loan Portal</h1>
+
+	        <p>
+	            Apply for loans online, upload documents securely, compare loan offers,
+	            calculate EMI and track your application anytime from one platform.
+	        </p>
+
+	        <a th:href="@{/apply}" class="primary-btn">
+	            Apply for Loan →
+	        </a>
+
+	    </div>
+
+	    <div class="welcome-right">
+
+	        <div class="summary-card">
+
+	            <h3>Why Choose CredSure?</h3>
+
+	            <div class="summary-item">
+	                <span>✔ End-to-End Digital Loan Processing</span>
+	            </div>
+
+	            <div class="summary-item">
+	                <span>✔ Secure Document Management</span>
+	            </div>
+
+	            <div class="summary-item">
+	                <span>✔ Multiple Loan Categories</span>
+	            </div>
+
+	            <div class="summary-item">
+	                <span>✔ Real-Time Application Tracking</span>
+	            </div>
+
+	            <div class="summary-item">
+	                <span>✔ Transparent Loan Comparison</span>
+	            </div>
+
+	            <div class="summary-item">
+	                <span>✔ Fast & User-Friendly Experience</span>
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</section>
+
+
+    <!-- Loan Categories -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            Loan Categories
+
+        </h2>
+
+        <div class="service-grid">
+
+            <div class="card">
+
+                <div class="icon">🏠</div>
+
+                <h3>Home Loan</h3>
+
+                <p>
+
+                    Purchase or construct your dream home with attractive
+                    interest rates.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">🚗</div>
+
+                <h3>Car Loan</h3>
+
+                <p>
+
+                    Finance new or used vehicles with flexible repayment
+                    options.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">🎓</div>
+
+                <h3>Education Loan</h3>
+
+                <p>
+
+                    Support higher education expenses in India and abroad.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">💼</div>
+
+                <h3>Business Loan</h3>
+
+                <p>
+
+                    Expand your business with quick digital approval.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon">💳</div>
+
+                <h3>Personal Loan</h3>
+
+                <p>
+
+                    Instant personal loans for your financial requirements.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Quick Services -->
+
+		<section class="services">
+
+		    <h2>Quick Services</h2>
+
+		    <div class="service-grid">
+
+				<a th:href="@{/emi}" class="service-card">
+				    <span>📈</span>
+				    <h3>EMI Calculator</h3>
+				    <p>Estimate your monthly loan repayments instantly.</p>
+				</a>
+				
+		        <a th:href="@{/offers}" class="service-card">
+		            <span>🎁</span>
+		            <h3>Loan Offers</h3>
+		            <p>View personalized offers from partner banks.</p>
+		        </a>
+
+		        <a th:href="@{/history}" class="service-card">
+		            <span>📋</span>
+		            <h3>My Applications</h3>
+		            <p>Track the status of your submitted applications.</p>
+		        </a>
+
+		        <a th:href="@{/support}" class="service-card">
+		            <span>📞</span>
+		            <h3>Support</h3>
+		            <p>Get assistance from our customer support team.</p>
+		        </a>
+
+		    </div>
+
+		</section>
+		
+
+
+    <!-- Recent Applications -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            Recent Applications
+
+        </h2>
+
+        <div class="recent-card">
+
+            <p>
+
+                No recent applications found.
+
+            </p>
+
+            <a href="/apply" class="secondary-btn">
+
+                Start New Application
+
+            </a>
+
+        </div>
+
+    </section>
 
 </div>
 
-<form action="/apply" method="post" th:object="${loanApplication}">
+<footer class="footer">
 
-    <div class="main">
+    © 2026 CredSure | Smart Digital Loan Portal
 
-        <div class="left-panel">
-            <h3>Application Progress</h3>
-
-            <div id="step1" class="progress-step">1. Personal Details</div>
-            <div id="step2" class="progress-step">2. Employment Details</div>
-            <div id="step3" class="progress-step">3. Loan Details</div>
-            <div id="step4" class="progress-step">4. Bank Analysis</div>
-        </div>
-
-        <div class="center-panel">
-
-            <h1>Apply For Your Loan</h1>
-
-            <h2>Personal Details</h2>
-
-            <div class="row">
-                <input type="text" th:field="*{fullName}" placeholder="Full Name" required>
-                <input type="number" th:field="*{age}" placeholder="Age" required>
-            </div>
-
-            <div class="row">
-                <input type="text" th:field="*{city}" placeholder="City" required>
-
-                <select th:field="*{employmentType}">
-                    <option value="">Employment Type</option>
-                    <option value="Government Employee">Government Employee</option>
-                    <option value="Permanent Employee">Permanent Employee</option>
-                    <option value="Temporary Employee">Temporary Employee</option>
-                    <option value="Self Employed">Self Employed</option>
-                    <option value="Business Owner">Business Owner</option>
-                    <option value="Farmer">Farmer</option>
-                    <option value="Retired">Retired</option>
-                </select>
-            </div>
-
-            <button type="button" class="save-btn" onclick="completeStep(1)">
-                Save Personal Details
-            </button>
-
-            <h2>Employment & Income</h2>
-
-            <div class="row">
-                <input type="number" th:field="*{salary}" placeholder="Monthly Salary / Income" required>
-                <input type="number" th:field="*{existingEmi}" placeholder="Existing EMI" required>
-            </div>
-
-            <div class="row">
-                <input type="text" placeholder="Company / Business Name">
-                <input type="number" placeholder="Years of Experience">
-            </div>
-
-            <button type="button" class="save-btn" onclick="completeStep(2)">
-                Save Employment Details
-            </button>
-
-            <h2>Loan Details</h2>
-
-            <div class="row">
-                <select th:field="*{loanType}">
-                    <option value="">Select Loan Type</option>
-                    <option value="Home Loan">Home Loan</option>
-                    <option value="Car Loan">Car Loan</option>
-                    <option value="Personal Loan">Personal Loan</option>
-                    <option value="Education Loan">Education Loan</option>
-                    <option value="Business Loan">Business Loan</option>
-                </select>
-
-                <input type="number" th:field="*{loanAmount}" placeholder="Requested Loan Amount" required>
-            </div>
-
-            <div class="row">
-                <input type="text" placeholder="Purpose of Loan">
-                <input type="number" placeholder="Property / Vehicle Cost">
-            </div>
-
-            <button type="button" class="save-btn" onclick="completeStep(3)">
-                Save Loan Details
-            </button>
-
-            <button type="submit" class="btn" onclick="return completeStep(4)">
-                Continue To Bank Analysis
-            </button>
-
-        </div>
-
-        <div class="right-panel">
-
-            <div class="card">
-                <h3>Instant Summary</h3>
-
-                <div class="summary-box">
-                    <p><b>Loan Type:</b> Home Loan</p>
-                    <p><b>Requested:</b> ₹5,00,000</p>
-                    <p><b>Estimated EMI:</b> ₹14,200</p>
-                    <p><b>Eligibility:</b> Good Chances</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Pre-Approved Offer</h3>
-
-                <div class="offer">
-                    <p style="font-size:22px;font-weight:bold;color:#1d4ed8;">
-                        Up to ₹7,50,000
-                    </p>
-
-                    <p>Interest Rate Starting From 8.5%</p>
-                    <p>Processing Fee: 0%</p>
-                </div>
-            </div>
-
-            
-        </div>
-
-    </div>
-
-</form>
-
-<script>
-    function completeStep(step){
-
-        if(step === 1){
-
-            const fullName = document.querySelector('[name="fullName"]').value;
-            const age = document.querySelector('[name="age"]').value;
-            const city = document.querySelector('[name="city"]').value;
-            const employment = document.querySelector('[name="employmentType"]').value;
-
-            if(fullName === "" || age === "" || city === "" || employment === ""){
-                alert("Please fill all Personal Details first.");
-                return false;
-            }
-
-            document.getElementById("step1").classList.add("completed");
-            return true;
-        }
-
-        if(step === 2){
-
-            const salary = document.querySelector('[name="salary"]').value;
-            const emi = document.querySelector('[name="existingEmi"]').value;
-
-            if(salary === "" || emi === ""){
-                alert("Please fill all Employment Details first.");
-                return false;
-            }
-
-            document.getElementById("step2").classList.add("completed");
-            return true;
-        }
-
-        if(step === 3){
-
-            const loanType = document.querySelector('[name="loanType"]').value;
-            const loanAmount = document.querySelector('[name="loanAmount"]').value;
-
-            if(loanType === "" || loanAmount === ""){
-                alert("Please fill all Loan Details first.");
-                return false;
-            }
-
-            document.getElementById("step3").classList.add("completed");
-            return true;
-        }
-
-        if(step === 4){
-
-            if(!document.getElementById("step1").classList.contains("completed")
-                || !document.getElementById("step2").classList.contains("completed")
-                || !document.getElementById("step3").classList.contains("completed")){
-
-                alert("Please complete all sections before Bank Analysis.");
-                return false;
-            }
-
-            document.getElementById("step4").classList.add("completed");
-            return true;
-        }
-    }
-</script>
-
-</body>
-</html>
+</footer>

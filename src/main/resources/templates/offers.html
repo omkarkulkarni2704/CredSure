@@ -1,22 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Loan Offers</title>
+<meta charset="UTF-8">
+<title>Loan Offers | CredSure</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#edf3ff;
+}
+
+/* Header */
+
+.header{
+    background:#2563eb;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    text-decoration:none;
+    color:white;
+}
+
+.back-btn{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Page */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:35px;
+    font-size:34px;
+}
+
+/* Cards */
+
+.offer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.offer-card{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.offer-card:hover{
+    transform:translateY(-8px);
+}
+
+.offer-card h2{
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.offer-card p{
+    margin:12px 0;
+    color:#555;
+    font-size:16px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+</style>
+
 </head>
-<body style="font-family:Arial;background:#edf3ff;padding:40px;">
 
-<h1 style="color:#2563eb;">Available Loan Offers</h1>
+<body>
 
-<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px;">
-    <h2>Home Loan</h2>
-    <p>Interest Rate: 8.5%</p>
-    <p>Maximum Amount: ₹50,00,000</p>
-</div>
+<header class="header">
 
-<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px;">
-    <h2>Car Loan</h2>
-    <p>Interest Rate: 9.0%</p>
-    <p>Maximum Amount: ₹15,00,000</p>
+    <a th:href="@{/}" class="logo">🏦 CredSure</a>
+
+    <a th:href="@{/}" class="back-btn">← Dashboard</a>
+
+</header>
+
+<div class="container">
+
+    <h1 class="page-title">Available Loan Offers</h1>
+
+    <div class="offer-grid">
+
+        <div class="offer-card">
+
+            <h2>🏠 Home Loan</h2>
+
+            <p><strong>Interest Rate:</strong> 8.5%</p>
+
+            <p><strong>Maximum Amount:</strong> ₹50,00,000</p>
+
+            <p><strong>Tenure:</strong> Up to 30 Years</p>
+
+            <p><strong>Processing Fee:</strong> 0.5%</p>
+
+            <a th:href="@{/apply}" class="btn">Apply Now</a>
+
+        </div>
+
+        <div class="offer-card">
+
+            <h2>🚗 Car Loan</h2>
+
+            <p><strong>Interest Rate:</strong> 9.0%</p>
+
+            <p><strong>Maximum Amount:</strong> ₹15,00,000</p>
+
+            <p><strong>Tenure:</strong> Up to 7 Years</p>
+
+            <p><strong>Processing Fee:</strong> 1%</p>
+
+            <a th:href="@{/apply}" class="btn">Apply Now</a>
+
+        </div>
+
+        <div class="offer-card">
+
+            <h2>🎓 Education Loan</h2>
+
+            <p><strong>Interest Rate:</strong> 7.5%</p>
+
+            <p><strong>Maximum Amount:</strong> ₹20,00,000</p>
+
+            <p><strong>Tenure:</strong> Up to 15 Years</p>
+
+            <p><strong>Processing Fee:</strong> Nil</p>
+
+            <a th:href="@{/apply}" class="btn">Apply Now</a>
+
+        </div>
+		
+		<div class="offer-card">
+
+		    <h2>🏢 Business Loan</h2>
+
+		    <p><strong>Interest Rate:</strong> 11.0%</p>
+
+		    <p><strong>Maximum Amount:</strong> ₹1,00,00,000</p>
+
+		    <p><strong>Tenure:</strong> Up to 10 Years</p>
+
+		    <p><strong>Processing Fee:</strong> 1%</p>
+
+		    <a th:href="@{/apply}" class="btn">Apply Now</a>
+
+		</div>
+		
+		<div class="offer-card">
+
+		    <h2>🏥 Health Loan</h2>
+
+		    <p><strong>Interest Rate:</strong> 8.0%</p>
+
+		    <p><strong>Maximum Amount:</strong> ₹25,00,000</p>
+
+		    <p><strong>Tenure:</strong> Up to 7 Years</p>
+
+		    <p><strong>Processing Fee:</strong> Nil</p>
+
+		    <a th:href="@{/apply}" class="btn">Apply Now</a>
+
+		</div>
+
+        <div class="offer-card">
+
+            <h2>💼 Personal Loan</h2>
+
+            <p><strong>Interest Rate:</strong> 10.5%</p>
+
+            <p><strong>Maximum Amount:</strong> ₹10,00,000</p>
+
+            <p><strong>Tenure:</strong> Up to 5 Years</p>
+
+            <p><strong>Processing Fee:</strong> 1.5%</p>
+
+            <a th:href="@{/apply}" class="btn">Apply Now</a>
+
+        </div>
+
+    </div>
+
 </div>
 
 </body>

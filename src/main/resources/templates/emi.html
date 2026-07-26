@@ -1,32 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>EMI Calculator</title>
+<meta charset="UTF-8">
+<title>EMI Calculator | CredSure</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#edf3ff;
+}
+
+/* Header */
+
+.header{
+    background:#2563eb;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    text-decoration:none;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.back-btn{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Page */
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:40px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#1e3a8a;
+    font-size:34px;
+    margin-bottom:35px;
+}
+
+/* Table */
+
+.table-card{
+    background:white;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    padding:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:16px;
+}
+
+td{
+    padding:16px;
+    text-align:center;
+    border-bottom:1px solid #e5e7eb;
+}
+
+tr:hover{
+    background:#f8fbff;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+.center{
+    text-align:center;
+}
+
+</style>
+
 </head>
-<body style="font-family:Arial;background:#edf3ff;padding:40px;">
 
-<h1 style="color:#2563eb;">EMI Calculator</h1>
+<body>
 
-<div style="background:white;padding:20px;border-radius:15px;width:600px;">
-    <table border="1" cellpadding="10" style="width:100%;border-collapse:collapse;">
-        <tr>
-            <th>Loan Amount</th>
-            <th>Duration</th>
-            <th>Estimated EMI</th>
-        </tr>
+<header class="header">
 
-        <tr>
-            <td>₹5,00,000</td>
-            <td>36 Months</td>
-            <td>₹16,000</td>
-        </tr>
+    <a th:href="@{/}" class="logo">🏦 CredSure</a>
 
-        <tr>
-            <td>₹10,00,000</td>
-            <td>60 Months</td>
-            <td>₹22,000</td>
-        </tr>
-    </table>
+    <a th:href="@{/}" class="back-btn">← Dashboard</a>
+
+</header>
+
+<div class="container">
+
+    <h1 class="page-title">EMI Calculator</h1>
+
+    <div class="table-card">
+
+        <table>
+
+            <tr>
+                <th>Loan Amount</th>
+                <th>Duration</th>
+                <th>Interest Rate</th>
+                <th>Estimated EMI</th>
+            </tr>
+
+            <tr>
+                <td>₹5,00,000</td>
+                <td>36 Months</td>
+                <td>8.5%</td>
+                <td>₹15,780</td>
+            </tr>
+
+            <tr>
+                <td>₹10,00,000</td>
+                <td>60 Months</td>
+                <td>9.0%</td>
+                <td>₹20,758</td>
+            </tr>
+
+            <tr>
+                <td>₹20,00,000</td>
+                <td>120 Months</td>
+                <td>8.75%</td>
+                <td>₹25,118</td>
+            </tr>
+
+        </table>
+
+        <div class="center">
+            <a th:href="@{/apply}" class="btn">Apply for Loan</a>
+        </div>
+
+    </div>
+
 </div>
 
 </body>

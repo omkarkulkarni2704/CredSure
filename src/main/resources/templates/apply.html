@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Loan | CredSure</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/apply.css}">
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="form-card">
+
+        <div class="header">
+
+            <h1>Loan Application</h1>
+
+            <p>
+                Complete the form below to check your eligibility and submit
+                your loan application securely.
+            </p>
+
+        </div>
+
+        <div class="stepper">
+
+            <div class="step active">
+                <span>1</span>
+                <p>Personal</p>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="step active">
+                <span>2</span>
+                <p>Employment</p>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="step active">
+                <span>3</span>
+                <p>Loan</p>
+            </div>
+
+        </div>
+
+        <form th:action="@{/apply}"
+              th:object="${loanApplication}"
+              method="post">
+
+            <!-- ================= Personal ================= -->
+
+            <div class="section">
+
+                <h2>
+                    <i class="fa-solid fa-user"></i>
+                    Personal Information
+                </h2>
+
+                <div class="grid">
+
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text"
+                               th:field="*{fullName}"
+                               placeholder="Enter full name"
+                               required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email"
+                               th:field="*{email}"
+                               placeholder="Enter email"
+                               required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Mobile Number</label>
+                        <input type="text"
+                               th:field="*{mobileNumber}"
+                               placeholder="10-digit mobile number"
+                               required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Age</label>
+                        <input type="number"
+                               th:field="*{age}"
+                               placeholder="Enter age"
+                               required>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label>City</label>
+                        <input type="text"
+                               th:field="*{city}"
+                               placeholder="Enter city"
+                               required>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= Employment ================= -->
+
+            <div class="section">
+
+                <h2>
+                    <i class="fa-solid fa-briefcase"></i>
+                    Employment Details
+                </h2>
+
+                <div class="grid">
+
+                    <div class="input-group">
+
+                        <label>Employment Type</label>
+
+                        <select th:field="*{employmentType}" required>
+
+                            <option value="">Select</option>
+
+                            <option value="Salaried">Salaried</option>
+
+                            <option value="Self Employed">Self Employed</option>
+
+                            <option value="Business">Business</option>
+
+                            <option value="Freelancer">Freelancer</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Years of Experience</label>
+
+                        <input type="number"
+                               th:field="*{experienceYears}"
+                               placeholder="Experience in years"
+                               required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Monthly Salary</label>
+
+                        <input type="number"
+                               step="0.01"
+                               th:field="*{salary}"
+                               placeholder="Monthly salary"
+                               required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Existing EMI</label>
+
+                        <input type="number"
+                               step="0.01"
+                               th:field="*{existingEmi}"
+                               placeholder="Current EMI">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= Loan ================= -->
+
+            <div class="section">
+
+                <h2>
+                    <i class="fa-solid fa-building-columns"></i>
+                    Loan Details
+                </h2>
+
+                <div class="grid">
+
+                    <div class="input-group">
+
+                        <label>Loan Type</label>
+
+                        <select th:field="*{loanType}" required>
+
+                            <option value="">Select Loan</option>
+
+                            <option value="Home Loan">Home Loan</option>
+
+                            <option value="Personal Loan">Personal Loan</option>
+
+                            <option value="Car Loan">Car Loan</option>
+
+                            <option value="Education Loan">Education Loan</option>
+
+                            <option value="Business Loan">Business Loan</option>
+							
+							<option value="Business Loan">Health Loan</option>
+
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Loan Amount</label>
+
+                        <input type="number"
+                               step="0.01"
+                               th:field="*{loanAmount}"
+                               placeholder="Requested amount"
+                               required>
+
+                    </div>
+
+                    <div class="input-group full-width">
+
+                        <label>Purpose of Loan</label>
+
+                        <textarea rows="4"
+                                  th:field="*{purpose}"
+                                  placeholder="Describe why you need this loan"
+                                  required></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="button-area">
+
+                <a th:href="@{/}" class="back-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back
+                </a>
+
+                <button type="submit" class="submit-btn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Submit Application
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

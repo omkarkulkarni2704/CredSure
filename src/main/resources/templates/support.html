@@ -1,16 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Support</title>
+<meta charset="UTF-8">
+<title>Customer Support | CredSure</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#edf3ff;
+}
+
+/* Header */
+
+.header{
+    background:#2563eb;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    text-decoration:none;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.back-btn{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Page */
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:50px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#1e3a8a;
+    font-size:34px;
+    margin-bottom:30px;
+}
+
+.support-card{
+    background:white;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.info{
+    margin:20px 0;
+    font-size:18px;
+    color:#444;
+}
+
+.info strong{
+    color:#2563eb;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+.center{
+    text-align:center;
+}
+
+</style>
+
 </head>
-<body style="font-family:Arial;background:#edf3ff;padding:40px;">
 
-<h1 style="color:#2563eb;">Customer Support</h1>
+<body>
 
-<div style="background:white;padding:20px;border-radius:15px;width:600px;">
-    <p><b>Email:</b> support@credsure.com</p>
-    <p><b>Phone:</b> +91 9876543210</p>
-    <p><b>Working Hours:</b> 9 AM to 6 PM</p>
+<header class="header">
+
+    <a th:href="@{/}" class="logo">🏦 CredSure</a>
+
+    <a th:href="@{/}" class="back-btn">← Dashboard</a>
+
+</header>
+
+<div class="container">
+
+    <h1 class="page-title">Customer Support</h1>
+
+    <div class="support-card">
+
+        <div class="info">
+            <strong>📧 Email:</strong><br>
+            support@credsure.com
+        </div>
+
+        <div class="info">
+            <strong>📞 Phone:</strong><br>
+            +91 9876543210
+        </div>
+
+        <div class="info">
+            <strong>🕒 Working Hours:</strong><br>
+            Monday – Saturday, 9:00 AM – 6:00 PM
+        </div>
+
+        <div class="center">
+            <a th:href="@{/}" class="btn">Back to Dashboard</a>
+        </div>
+
+    </div>
+
 </div>
 
 </body>
