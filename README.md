@@ -29,7 +29,7 @@
 
 ### 1. Backend:
 
-* **Java 25**: Core business logic and risk calculation engine.
+* **Java 21**: Core business logic and risk calculation engine.
 * **Spring Boot**: Application framework and backend server.
 * **Spring MVC**: Handles routing and request processing.
 * **Spring Data JPA**: Database ORM for storing loan applications and bank data.
